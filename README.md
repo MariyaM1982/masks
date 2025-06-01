@@ -29,4 +29,4 @@ mask_account_card
 
 4. Функция обработки формата даты get_date
 
- 5.функция sort_by_date
+5.функция sort_by_date
