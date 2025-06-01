@@ -9,7 +9,7 @@
 
 1. Клонируйте репозиторий:
 ```
-git@github.com:andromedius/Belkevich_bank_project.git
+
 ```
 
 2. Установите зависимости:
