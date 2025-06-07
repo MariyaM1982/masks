@@ -30,3 +30,7 @@ mask_account_card
 4. Функция обработки формата даты get_date
    
 5. функция sort_by_date
+
+## Тестирование
+
+В папке \tests три тест-кейса (test_masks.py, test_widget.py, test_processing.py) для тестирования модулей: masks, widget, processing.
