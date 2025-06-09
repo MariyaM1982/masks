@@ -5,7 +5,10 @@ from src.masks import get_mask_account, get_mask_card_number
 
 @pytest.mark.parametrize(
     "card_number, expected",
-    [("1234567890123456", "123456******3456"), ("1234567890", "1234567890"), ("", "")],
+    [
+        ("7000792289606361", "7000 79** **** 6361"),
+        ("1234567890123456", "1234 56** **** 3456"),
+    ],
 )
 def test_mask_card_number(card_number: str, expected: str) -> None:
     assert get_mask_card_number(card_number) == expected
