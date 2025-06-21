@@ -33,4 +33,5 @@ mask_account_card
 
 ## Тестирование
 
-В папке \tests три тест-кейса (test_masks.py, test_widget.py, test_processing.py) для тестирования модулей: masks, widget, processing.
+В папке \tests четыре тест-кейса (test_masks.py, test_widget.py, test_processing.py, test_generators.py) для тестирования модулей: masks, widget, processing, generators.
+
