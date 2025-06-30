@@ -19,7 +19,7 @@ def get_rub_amount(transaction: dict) -> float:
         return amount
 
     if currency in ("USD", "EUR"):
-        url = f"https://api.apilayer.com/exchangerates_data/latest?base={currency}&symbols=RUB"
+        url = f"https://apilayer.com/marketplace/exchangerates_data-api={currency}&symbols=RUB"
         headers = {"apikey": API_KEY}
         response = requests.get(url, headers=headers)
         response.raise_for_status()
