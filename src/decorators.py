@@ -1,6 +1,6 @@
+import datetime
 import logging
 import os
-from datetime import datetime
 
 
 # Настройка логирования
@@ -11,7 +11,9 @@ def setup_logger(filename=None):
 
     if filename is not None:
         log_file = os.path.join("logs", filename)
-        os.makedirs(os.path.dirname(log_file), exist_ok=True)  # Создание папки, если не существует
+        os.makedirs(
+            os.path.dirname(log_file), exist_ok=True
+        )  # Создание папки, если не существует
         file_handler = logging.FileHandler(log_file)
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
@@ -25,12 +27,12 @@ def setup_logger(filename=None):
 
 def log(filename=None):
     """
-        Декоратор для логирования вызовов функции.
+    Декоратор для логирования вызовов функции.
 
-        Этот декоратор записывает информацию о вызовах обернутой функции, включая
-        переданные аргументы и возвращаемое значение, в указанный файл или выводит
-        в консоль. В случае возникновения исключения декоратор также записывает
-        информацию об ошибке.
+    Этот декоратор записывает информацию о вызовах обернутой функции, включая
+    переданные аргументы и возвращаемое значение, в указанный файл или выводит
+    в консоль. В случае возникновения исключения декоратор также записывает
+    информацию об ошибке.
 
     """
     logger = setup_logger(filename)
@@ -39,7 +41,9 @@ def log(filename=None):
         def wrapper(*args, **kwargs):
             function_name = func.__name__
             start_time = datetime.now()
-            logger.info(f"{function_name} called at {start_time.isoformat()} with args: {args} and kwargs: {kwargs}")
+            logger.info(
+                f"{function_name} called at {start_time.isoformat()} with args: {args} and kwargs: {kwargs}"
+            )
 
             try:
                 result = func(*args, **kwargs)
