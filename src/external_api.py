@@ -1,4 +1,5 @@
 import os
+
 import requests
 from dotenv import load_dotenv
 
@@ -6,6 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 API_KEY = os.getenv("EXCHANGE_API_KEY")
+
 
 def get_rub_amount(transaction: dict) -> float:
     """
