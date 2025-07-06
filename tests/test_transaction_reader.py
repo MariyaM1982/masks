@@ -1,7 +1,14 @@
 import csv
 import os
+import unittest
+from unittest.mock import MagicMock, patch
 
 import pandas as pd
+
+from src.transaction_reader import (
+    read_transactions_from_csv,
+    read_transactions_from_excel,
+)
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "../data")
 CSV_PATH = os.path.join(DATA_DIR, "transactions.csv")
@@ -55,3 +62,41 @@ def test_pandas_read_excel_shape_and_head():
     head_1000 = df.head(1000)
     assert isinstance(head_1000, pd.DataFrame)
     assert len(head_1000) <= 1000
+
+
+class TestTransactionReaders(unittest.TestCase):
+
+    @patch("src.transaction_reader.pd.read_csv")  # patch пути к pandas.read_csv
+    def test_read_transactions_from_csv(self, mock_read_csv):
+        # Настраиваем поддельный DataFrame
+        mock_df = MagicMock()
+        mock_df.to_dict.return_value = [
+            {"id": 1, "amount": 100.0},
+            {"id": 2, "amount": 250.0},
+        ]
+        mock_read_csv.return_value = mock_df
+
+        # Вызываем функцию
+        result = read_transactions_from_csv("ignored/path.csv")
+
+        # Проверка вызова и результата
+        mock_read_csv.assert_called_once_with("data/transactions.csv")
+        mock_df.to_dict.assert_called_once_with(orient="records")
+        self.assertEqual(
+            result, [{"id": 1, "amount": 100.0}, {"id": 2, "amount": 250.0}]
+        )
+
+    @patch("src.transaction_reader.pd.read_excel")  # patch пути к pandas.read_excel
+    def test_read_transactions_from_excel(self, mock_read_excel):
+        # Настраиваем поддельный DataFrame
+        mock_df = MagicMock()
+        mock_df.to_dict.return_value = [{"id": 1, "amount": 500.0}]
+        mock_read_excel.return_value = mock_df
+
+        # Вызываем функцию
+        result = read_transactions_from_excel("ignored/path.xlsx")
+
+        # Проверка вызова и результата
+        mock_read_excel.assert_called_once_with("data/transactions_excel.xlsx")
+        mock_df.to_dict.assert_called_once_with(orient="records")
+        self.assertEqual(result, [{"id": 1, "amount": 500.0}])
