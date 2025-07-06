@@ -33,4 +33,6 @@ def test_error_function(capsys):
     # Проверка вывода в файл
     with open("logs/mylog.txt", "r") as log_file:
         log_content = log_file.readlines()
-        assert any("error_function error: ZeroDivisionError" in line for line in log_content)
+        assert any(
+            "error_function error: ZeroDivisionError" in line for line in log_content
+        )

@@ -1,5 +1,8 @@
 import pytest
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+
+from src.generators import (card_number_generator, filter_by_currency,
+                            transaction_descriptions)
+
 
 @pytest.fixture
 def sample_transactions():
@@ -9,11 +12,13 @@ def sample_transactions():
         {"amount": 70.0, "currency": "USD", "description": "Payment #3"},
     ]
 
+
 def test_filter_by_currency_usd(sample_transactions):
     result = list(filter_by_currency(sample_transactions, "USD"))
     assert len(result) == 2
     for r in result:
         assert r["currency"] == "USD"
+
 
 def test_filter_by_currency_eur(sample_transactions):
     result = list(filter_by_currency(sample_transactions, "EUR"))
@@ -21,10 +26,12 @@ def test_filter_by_currency_eur(sample_transactions):
     for r in result:
         assert r["currency"] == "EUR"
 
+
 def test_transaction_descriptions(sample_transactions):
     desc_gen = transaction_descriptions(sample_transactions)
     result = list(desc_gen)
     assert result == ["Payment #1", "Payment #2", "Payment #3"]
+
 
 @pytest.mark.parametrize(
     "start,stop,expected",
