@@ -31,7 +31,9 @@ mask_account_card
    
 5. функция sort_by_date
 
+6. Функции read_transactions_from_csv для считывания информации из фала CSV и функция read_transactions_from_excel для считывания информации из фала EXCEL
+
 ## Тестирование
 
-В папке \tests четыре тест-кейса (test_masks.py, test_widget.py, test_processing.py, test_generators.py) для тестирования модулей: masks, widget, processing, generators.
+В папке \tests тест-кейсы (test_masks.py, test_widget.py, test_processing.py, test_generators.py, test_decorators.py, test_external_api.py, test_utils.py, test_transaction_reader.py) для тестирования модулей: masks, widget, processing, generators, utils, decorators, external_api, transaction_reader.
 
