@@ -5,10 +5,8 @@ from unittest.mock import MagicMock, patch
 
 import pandas as pd
 
-from src.transaction_reader import (
-    read_transactions_from_csv,
-    read_transactions_from_excel,
-)
+from src.transaction_reader import (read_transactions_from_csv,
+                                    read_transactions_from_excel)
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "../data")
 CSV_PATH = os.path.join(DATA_DIR, "transactions.csv")
